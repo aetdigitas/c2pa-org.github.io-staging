@@ -14,4 +14,4 @@ jobs:
 
     - name: hugo
       uses: klakegg/actions-hugo@1.0.0
-      command: --baseURL https://damianfallas.github.io/c2pa-org-staging/
+      run: --baseURL https://damianfallas.github.io/c2pa-org-staging/
