@@ -3,18 +3,12 @@ name: Hugo
 on: [push]
 
 jobs:
-  build:
+  bash-script:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: hugo
-      uses: klakegg/actions-hugo@1.0.0
-      with:
-        vertion: 0.82.1
-        image: ext-alpine
-        command: --baseURL https://damianfallas.github.io/c2pa-org-staging/
+      - name: Run Bash script
+        run: bash hugo-build-staging.sh
