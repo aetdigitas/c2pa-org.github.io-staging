@@ -15,4 +15,6 @@ jobs:
     - name: hugo
       uses: klakegg/actions-hugo@1.0.0
       with:
+        vertion: 0.82.1
+        image: ext-alpine
         command: --baseURL https://damianfallas.github.io/c2pa-org-staging/
