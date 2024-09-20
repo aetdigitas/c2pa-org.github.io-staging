@@ -7,6 +7,8 @@ set -eu
 
 DOCKER_IMG=hugo-build-container
 OUTPUT_DIR=docs
+STAGE_BASEURL=https://damianfallas.github.io/c2pa-org-staging/
+OUTPUT_DIR_BASEURL=docs-staging
 
 #detect platform that we're running on...
 unameOut="$(uname -s)"
@@ -29,6 +31,10 @@ fi
 
 # run it!
 docker run --rm -it -v "${curPath}/${OUTPUT_DIR}":/src/${OUTPUT_DIR} -e "HUGO_DESTINATION=/src/${OUTPUT_DIR}" "${DOCKER_IMG}"
+
+# staging build
+docker run --rm -it -v "${curPath}/${OUTPUT_DIR_BASEURL}":/src/${OUTPUT_DIR_BASEURL} -e "HUGO_DESTINATION=/src/${OUTPUT_DIR_BASEURL}" "${DOCKER_IMG}" --baseURL ${STAGE_BASEURL}
+
 
 # make sure we add the CNAME file for Github pages
 \cp -fv etc/CNAME docs
